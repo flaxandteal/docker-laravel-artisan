@@ -1,6 +1,6 @@
 FROM dylanlindgren/docker-phpcli:latest
 
-MAINTAINER "Dylan Lindgren" <dylan.lindgren@gmail.com>
+# UPSTREAM MAINTAINER "Dylan Lindgren" <dylan.lindgren@gmail.com>
 
 WORKDIR /tmp
 
@@ -13,6 +13,7 @@ RUN apt-get update -y && \
     php5-pgsql \
     php5-redis \
     php5-sqlite \
+    php5-curl \
     php5-gd
 
 RUN mkdir -p /data/www
