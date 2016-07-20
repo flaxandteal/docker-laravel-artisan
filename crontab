@@ -1,0 +1,2 @@
+* * * * * root env - `cat /root/env.txt` php /data/www/artisan schedule:run >> /var/log/cron.log &2>1
+

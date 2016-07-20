@@ -16,7 +16,13 @@ RUN apt-get update -y && \
     php5-curl \
     php5-gd
 
+RUN apt-get install -y cron
+
+COPY crontab /etc/cron.d/
+COPY cron.sh /
+
 RUN mkdir -p /data/www
+
 VOLUME ["/data"]
 WORKDIR /data/www
 
