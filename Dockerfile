@@ -16,15 +16,19 @@ RUN apt-get update -y && \
     php5-curl \
     php5-gd
 
-RUN apt-get install -y cron
+RUN apt-get update -y && apt-get install -y cron curl
 
-COPY crontab /etc/cron.d/
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+COPY crontab /etc/cron.d/laravel
+RUN chmod 644 /etc/cron.d/laravel
 COPY cron.sh /
 
-RUN mkdir -p /data/www
+RUN mkdir -p /data/logs
 
-VOLUME ["/data"]
-WORKDIR /data/www
+VOLUME ["/var/www/app"]
+
+WORKDIR /var/www/app
 
 ENTRYPOINT ["php", "artisan"]
 CMD ["--help"]
